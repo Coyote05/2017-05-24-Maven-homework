@@ -7,5 +7,7 @@ public class Main {
         Util util = new Util();
 
         util.printYoutubeJSON("C:\\Users\\C\\IdeaProjects\\2017-05-24-Maven-homework\\src\\main\\java\\homework11\\youtube.json");
+
+        util.convertYoutubeJSONToXML("C:\\Users\\C\\IdeaProjects\\2017-05-24-Maven-homework\\src\\main\\java\\homework11\\youtube.json", "C:\\Users\\C\\IdeaProjects\\2017-05-24-Maven-homework\\src\\main\\java\\homework11\\youtube.xml");
     }
 }

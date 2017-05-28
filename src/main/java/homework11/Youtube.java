@@ -1,5 +1,8 @@
 package homework11;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Youtube {
 
     private Double apiVersion;
