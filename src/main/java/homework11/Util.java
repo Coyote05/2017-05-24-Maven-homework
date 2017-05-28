@@ -1,10 +1,11 @@
 package homework11;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.stream.XMLStreamException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,15 +28,15 @@ public class Util {
         }
     }
 
-    public static void convertYoutubeJSONToXML (String fromPlace, String toPlace) throws IOException, XMLStreamException {
-
-        byte[] jsonData = Files.readAllBytes(Paths.get(fromPlace));
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Youtube youtube = objectMapper.readValue(jsonData, Youtube.class);
+    public static void convertYoutubeJSONToXML (String fromPlace, String toPlace) {
 
         try {
+            byte[] jsonData = Files.readAllBytes(Paths.get(fromPlace));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            Youtube youtube = objectMapper.readValue(jsonData, Youtube.class);
+
             JAXBContext jaxbContext = JAXBContext.newInstance(Youtube.class);
 
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -50,6 +51,12 @@ public class Util {
 
         } catch (JAXBException e) {
             System.out.println("JAXBException " + e.getMessage());
+        } catch (JsonParseException e) {
+            System.out.println("JsonParseException " + e.getMessage());
+        } catch (JsonMappingException e) {
+            System.out.println("JsonMappingException " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IOException " + e.getMessage());
         }
     }
 }
